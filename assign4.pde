@@ -128,8 +128,8 @@ void keyPressed() {
 void alienMaker(int ox, int oy, int spacing_L, int spacing_U, int alienNum, int numInRow){
   for (int i=0; i < alienNum; ++i){
     
-    int row = i / numInRow;
-    int col = i % numInRow;
+    int row = int(i / numInRow);
+    int col = int(i % numInRow);
  
     int x = ox + (spacing_L*col);
     int y = oy + (spacing_U*row);
