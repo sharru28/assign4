@@ -83,6 +83,7 @@ void draw() {
     checkShipHit();  /*finish this function*/
 
     countBulletFrame+=1;
+    counter += 1;
     break;
 
   case GAME_PAUSE:
@@ -350,7 +351,7 @@ void reset() {
   bulletNum = 0;
 
   /*--------Init Variable Here---------*/
-  
+  N=0;
 
   /*-----------Call Make Alien Function--------*/
   alienMaker(50,50,40,50,53,12);
