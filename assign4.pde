@@ -243,11 +243,12 @@ void checkAlienDead() {
 /*---------Alien Drop Laser-----------------*/
 void shootLaser(int frame ) {
   N =0;
+  int r = (int)(random(52));
   if (counter==frame) {    
     for (int i = 0; i<aList.length-1; i++) {
-      int ii =int (random(i));      
-      if (aList[ii]!=null && !aList[ii].die) {                   
-        lList[N]= new Laser(aList[ii].aX, aList[ii].aY );
+          
+      if (aList[r]!=null && !aList[r].die) {                   
+        lList[N]= new Laser(aList[r].aX, aList[r].aY );
         if(lList[N].lY>height){
           if (N<lList.length-3) {
               N++;
