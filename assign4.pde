@@ -70,7 +70,7 @@ void draw() {
 
     drawHorizon();
     drawScore();
-    drawLife(15,25,78,459);
+    drawLife();
     ship.display(); //Draw Ship on the Screen
     drawAlien();
     drawBullet();
@@ -78,6 +78,7 @@ void draw() {
 
     /*---------Call functions---------------*/
 
+    shiplife(4);
     shootLaser(50);
     checkAlienDead();/*finish this function*/
     checkShipHit();  /*finish this function*/
@@ -145,14 +146,22 @@ void alienMaker(int ox, int oy, int spacing_L, int spacing_U, int alienNum, int 
     
   }
 }
-void drawLife(float R, float spacing, float ox, float oy) {
+void drawLife() {
   fill(230, 74, 96);
   text("LIFE:", 36, 455);
   /*---------Draw Ship Life---------*/
-  for (int i=0; i<3; i++){
-    ellipse(ox+i*spacing,oy,R,R);
-  }
+  
+  
 }
+
+void shiplife (int shiplifeNum){
+ for(int i=0 ; i<ship.life; i++) {
+   fill(230,74,96); 
+   ellipse(78+i*25, 459, 15, 15);
+  
+ }
+}
+      
 
 void drawBullet() {
   for (int i=0; i<bList.length-1; i++) {
@@ -270,8 +279,12 @@ void checkShipHit() {
   for (int i=0; i<lList.length-1; i++) {
     Laser laser = lList[i];
     if (laser!= null && !laser.gone // Check Array isn't empty and laser still exist
-    /*------------Hit detect-------------*/      ) {
+    /*------------Hit detect-------------*/ 
+    &&lList[i].lX <= ship.posX  + 10 && lList[i].lX >= ship.posX  - 10 &&
+    lList[i].lY <= ship.posY  + 10 && lList[i].lY >= ship.posY  - 10        ) {
       /*-------do something------*/
+      removeLaser(lList[i]);         
+      ship.life-=1;
     }
   }
 }
@@ -353,7 +366,7 @@ void reset() {
 
   /*--------Init Variable Here---------*/
   N=0;
-
+  ship.life = 3;
   /*-----------Call Make Alien Function--------*/
   alienMaker(50,50,40,50,53,12);
 
