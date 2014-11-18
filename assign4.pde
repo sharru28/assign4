@@ -19,6 +19,10 @@ int bulletNum;           //Bullet Order Number
 
 /*--------Put Variables Here---------*/
 
+int counter;
+int N;
+
+
 
 void printText(float size_M,float size_S, float oy,float spacing, String s1,String s2){
   textAlign(CENTER);
@@ -236,6 +240,27 @@ void checkAlienDead() {
 }
 
 /*---------Alien Drop Laser-----------------*/
+void shootLaser(int frame ) {
+  N =0;
+  if (counter==frame) {    
+    for (int i = 0; i<aList.length-1; i++) {
+      int ii =int (random(i));      
+      if (aList[ii]!=null && !aList[ii].die) {                   
+        lList[N]= new Laser(aList[ii].aX, aList[ii].aY );
+        if(lList[N].lY>height){
+          if (N<lList.length-3) {
+              N++;
+              }
+           else {
+        N = 0;
+         }
+       }else{
+     }
+   counter = 0;
+   }
+  }
+ }
+}
 
 
 /*---------Check Laser Hit Ship-------------*/
