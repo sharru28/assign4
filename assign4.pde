@@ -18,8 +18,7 @@ int countBulletFrame;    //Bullet Time Counter
 int bulletNum;           //Bullet Order Number
 
 /*--------Put Variables Here---------*/
-int counter;
-int N;
+
 
 void printText(float size_M,float size_S, float oy,float spacing, String s1,String s2){
   textAlign(CENTER);
@@ -75,7 +74,7 @@ void draw() {
 
     /*---------Call functions---------------*/
 
-    alienshoot(50);
+    
     checkAlienDead();/*finish this function*/
     checkShipHit();  /*finish this function*/
 
@@ -237,29 +236,7 @@ void checkAlienDead() {
 }
 
 /*---------Alien Drop Laser-----------------*/
-void alienShoot(int frame){ 
- int r = (int)random(52);
-  counter+=1;
 
- if(counter>frame){
-   if (N<lList.length-2) {
-        N+=1;
-      } else {
-        N = 0;
-      }
-    
-    for (int i=0; i<aList.length-1; i++) {
-    Alien alien = aList[i];
- 
-   if(alien!=null && !alien.die){
-     lList[N]= new Laser(aList[r].aX , aList[r].aY );
-       
-      
-     }
-    }
-   counter=0;
-   }
-  }
 
 /*---------Check Laser Hit Ship-------------*/
 void checkShipHit() {
