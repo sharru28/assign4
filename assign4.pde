@@ -75,7 +75,7 @@ void draw() {
 
     /*---------Call functions---------------*/
 
-    shootLaser(150);
+    shootLaser(50);
     checkAlienDead();/*finish this function*/
     checkShipHit();  /*finish this function*/
 
@@ -345,7 +345,7 @@ void reset() {
   bulletNum = 0;
 
   /*--------Init Variable Here---------*/
-  ship.life= 3;
+ 
   laserNum = 0;
 
   /*-----------Call Make Alien Function--------*/
