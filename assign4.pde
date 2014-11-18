@@ -18,7 +18,8 @@ int countBulletFrame;    //Bullet Time Counter
 int bulletNum;           //Bullet Order Number
 
 /*--------Put Variables Here---------*/
-
+int counter;
+int N;
 
 void printText(float size_M,float size_S, float oy,float spacing, String s1,String s2){
   textAlign(CENTER);
