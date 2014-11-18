@@ -18,6 +18,9 @@ int countBulletFrame;    //Bullet Time Counter
 int bulletNum;           //Bullet Order Number
 
 /*--------Put Variables Here---------*/
+int countLaserFrame ;
+int laserNum;
+
 void printText(float size_M,float size_S, float oy,float spacing, String s1,String s2){
   textAlign(CENTER);
   textSize(size_M);
@@ -72,7 +75,7 @@ void draw() {
 
     /*---------Call functions---------------*/
 
-
+    
     checkAlienDead();/*finish this function*/
     checkShipHit();  /*finish this function*/
 
@@ -221,8 +224,8 @@ void checkAlienDead() {
       Alien alien = aList[j];
       if (bullet != null && alien != null && !bullet.gone && !alien.die // Check Array isn't empty and bullet / alien still exist
       /*------------Hit detect-------------*/  
-      && bList[i].bX <= aList[j].aX + aList[j].aSize/2 && bList[i].bX >= aList[j].aX - aList[j].aSize/2 
-      && bList[i].bY <= aList[j].aY + aList[j].aSize/2 && bList[i].bY >= aList[j].aY - aList[j].aSize/2      ) {
+      && bList[i].bX <= aList[j].aX + 10 && bList[i].bX >= aList[j].aX - 10 
+      && bList[i].bY <= aList[j].aY + 10 && bList[i].bY >= aList[j].aY - 10      ) {
         /*-------do something------*/
        removeBullet( bList[i] );
        removeAlien( aList[j] );
@@ -234,10 +237,27 @@ void checkAlienDead() {
 }
 
 /*---------Alien Drop Laser-----------------*/
-void alienShoot (int frame){
-  
+void shootLaser(int frame ) {
+  laserNum =0;
+  if (countLaserFrame==frame) {    
+    for (int i = 0; i<aList.length-1; i++) {
+      int ii =int (random(i));      
+      if (aList[ii]!=null && !aList[ii].die) {                   
+        lList[laserNum]= new Laser(aList[ii].aX, aList[ii].aY );
+        if(lList[laserNum].lY>height){
+          if (laserNum<lList.length-3) {
+              laserNum++;
+              }
+           else {
+        laserNum = 0;
+         }
+       }else{
+     }
+   countLaserFrame = 0;
+   }
+  }
+ }
 }
-
 /*---------Check Laser Hit Ship-------------*/
 void checkShipHit() {
   for (int i=0; i<lList.length-1; i++) {
@@ -325,7 +345,8 @@ void reset() {
   bulletNum = 0;
 
   /*--------Init Variable Here---------*/
-  
+  ship.life= 3;
+  laserNum = 0;
 
   /*-----------Call Make Alien Function--------*/
   alienMaker(50,50,40,50,53,12);
