@@ -18,8 +18,8 @@ int countBulletFrame;    //Bullet Time Counter
 int bulletNum;           //Bullet Order Number
 
 /*--------Put Variables Here---------*/
-int countLaserFrame ;
-int laserNum;
+int lasercounter;
+int laserN;
 
 void printText(float size_M,float size_S, float oy,float spacing, String s1,String s2){
   textAlign(CENTER);
@@ -237,27 +237,29 @@ void checkAlienDead() {
 }
 
 /*---------Alien Drop Laser-----------------*/
-void shootLaser(int frame ) {
-  laserNum =0;
-  if (countLaserFrame==frame) {    
-    for (int i = 0; i<aList.length-1; i++) {
-      int ii =int (random(i));      
-      if (aList[ii]!=null && !aList[ii].die) {                   
-        lList[laserNum]= new Laser(aList[ii].aX, aList[ii].aY );
-        if(lList[laserNum].lY>height){
-          if (laserNum<lList.length-3) {
-              laserNum++;
-              }
-           else {
-        laserNum = 0;
-         }
-       }else{
+void alienShoot(int frame){ 
+ int r = (int)random(52);
+ lasercounter+=1;
+
+ if(lasercounter>frame){
+   if (laserN<lList.length-2) {
+        laserN+=1;
+      } else {
+        laserN = 0;
+      }
+    
+    for (int i=0; i<aList.length-1; i++) {
+    Alien alien = aList[i];
+ 
+   if(alien!=null && !alien.die){
+     lList[N]= new Laser(aList[r].aX , aList[r].aY );
+       
+      
      }
-   countLaserFrame = 0;
+    }
+   lasercounter=0;
    }
   }
- }
-}
 /*---------Check Laser Hit Ship-------------*/
 void checkShipHit() {
   for (int i=0; i<lList.length-1; i++) {
@@ -345,7 +347,7 @@ void reset() {
   bulletNum = 0;
 
   /*--------Init Variable Here---------*/
- 
+  ship.life= 3;
   laserNum = 0;
 
   /*-----------Call Make Alien Function--------*/
