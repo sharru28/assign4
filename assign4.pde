@@ -75,7 +75,7 @@ void draw() {
 
     /*---------Call functions---------------*/
 
-    
+    shootLaser(150);
     checkAlienDead();/*finish this function*/
     checkShipHit();  /*finish this function*/
 
